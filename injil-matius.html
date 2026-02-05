@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Injil Matius - Kabar Baik Isa Al-Masih">
+    <meta property="og:title" content="Injil Matius | Pusat Studi Kitabullah">
+    <title>Injil Matius | Pusat Studi Kitabullah</title>
+
+    <!-- Branding -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="theme-color" content="#1e4d2b">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Book Selector Overlay (Categorized Books) -->
+    <div id="bookSelectorOverlay" class="book-selector-overlay">
+        <div class="selector-container">
+            <div class="selector-header">
+                <h2>Pilih Kitab</h2>
+                <button id="closeSelectorBtn" class="close-selector-btn" aria-label="Tutup">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="bookCategories" class="book-categories">
+                <!-- Dynamically populated categories -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-container">
+        <div id="readingProgress" class="reading-progress-bar"></div>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html#library" class="back-btn" id="backBtn" aria-label="Kembali ke Perpustakaan">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </a>
+
+            <button id="bookToggleBtn" class="book-toggle-btn" aria-label="Ganti Kitab">
+                <div class="toggle-content">
+                    <span class="toggle-arabic">إنجيل متى</span>
+                    <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </div>
+                <span class="toggle-indonesian">Injil Matius</span>
+            </button>
+
+            <div class="header-actions">
+                <button id="fontSettingsBtn" class="action-btn-sm" aria-label="Pengaturan Tampilan">
+                    <span style="font-family: var(--font-latin); font-weight: 700; font-size: 1.1rem;">Aa</span>
+                </button>
+
+                <div id="fontSettingsPanel" class="settings-panel">
+                    <label>Ukuran Teks</label>
+                    <div class="font-control">
+                        <span style="font-size: 14px">A</span>
+                        <input type="range" id="fontSizeSlider" min="14" max="24" value="17" step="1">
+                        <span style="font-size: 20px">A</span>
+                    </div>
+                </div>
+
+                <div class="chapter-selector-wrapper">
+                    <label for="chapterSelect" class="sr-only">Pilih Pasal</label>
+                    <select id="chapterSelect" class="chapter-select">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div id="versesContainer" class="verses-container">
+            <!-- Verses will be dynamically loaded here -->
+        </div>
+
+        <!-- Chapter Navigation Footer -->
+        <div class="chapter-navigation">
+            <button class="nav-btn prev-chapter" id="prevChapterBtn" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+                <span>Pasal Sebelumnya</span>
+            </button>
+            <button class="nav-btn next-chapter" id="nextChapterBtn">
+                <span>Pasal Selanjutnya</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Footnotes Section -->
+        <section id="footnotes-section" class="footnotes-section">
+            <div class="footnotes-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
+                    <path d="M12 8v4M12 16h.01" />
+                </svg>
+                <h2>Catatan Kaki</h2>
+            </div>
+            <div id="footnotes-list" class="footnotes-list">
+                <!-- Footnotes will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Action Modal (Bottom Sheet) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="action-modal" id="actionModal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Pilih Aksi</h3>
+                <button class="modal-close" id="modalClose" aria-label="Tutup Panel">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-quote">
+                    <p data-i18n="reader_share_quote"></p>
+                    <span data-i18n="reader_share_source"></span>
+                </div>
+
+                <div class="share-grid">
+                    <button class="share-option" id="shareFacebookBtn">
+                        <div class="share-social-icon facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </div>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="share-option" id="shareXBtn">
+                        <div class="share-social-icon x-twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                            </svg>
+                        </div>
+                        <span>X (Twitter)</span>
+                    </button>
+                    <button class="share-option" id="shareWhatsAppBtn">
+                        <div class="share-social-icon whatsapp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                        </div>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button class="share-option" id="copyLinkBtn">
+                        <div class="share-social-icon link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+                            </svg>
+                        </div>
+                        <span>Salin Tautan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 6L9 17l-5-5" />
+        </svg>
+        <span id="toastMessage">Teks berhasil disalin!</span>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Load pre-converted data for local file compatibility (fixes CORS issues) -->
+    <script src="database/kitab_full_data.js"></script>
+    <script>window.CURRENT_BOOK_ID = "matius";</script>
+    <script src="script.js"></script>
+</body>
+
+</html>
