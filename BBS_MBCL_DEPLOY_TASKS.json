@@ -27,8 +27,9 @@
       "scope": "Commit, push, deploy, and verify GitHub Pages after all validation gates pass."
     }
   },
-  "updatedAt": "2026-08-14T22:55:45.8507706+09:00",
-  "currentGate": "G09",
+  "updatedAt": "2026-08-15T01:56:55.5730645+09:00",
+  "currentGate": null,
+  "result": "passed",
   "tasks": [
     {
       "id": "G00",
@@ -233,7 +234,7 @@
       "id": "G09",
       "stage": "github_publish",
       "title": "Commit and push the validated release to GitHub",
-      "status": "in_progress",
+      "status": "passed",
       "dependsOn": [
         "G08"
       ],
@@ -242,14 +243,18 @@
         "The release branch is pushed successfully.",
         "The deployment path to main is documented."
       ],
-      "evidence": [],
+      "evidence": [
+        "Reviewed release commit e972378f4b91ddeb60b68152254671ce3c33d428 was created with message: feat: add BBS MBCL Bengali reader.",
+        "The commit contains the 32 reviewed files and was pushed directly from local main to origin/main, advancing 08cb352 to e972378.",
+        "The documented deployment path is GitHub Pages legacy build from the main branch at repository root."
+      ],
       "blockingReason": null
     },
     {
       "id": "G10",
       "stage": "production_deploy",
       "title": "Deploy the approved release to GitHub Pages",
-      "status": "pending",
+      "status": "passed",
       "dependsOn": [
         "G09"
       ],
@@ -257,14 +262,19 @@
         "The validated commit reaches the GitHub Pages source branch.",
         "GitHub reports the Pages deployment as successful."
       ],
-      "evidence": [],
+      "evidence": [
+        "GitHub Pages workflow run 31821057564 completed successfully for e972378f4b91ddeb60b68152254671ce3c33d428.",
+        "Build job 94834047694, deploy job 94834216272, and report job 94834216401 all completed successfully.",
+        "GitHub Pages build 1151389360 reported status built for the exact release commit at 2026-08-14T16:50:15Z.",
+        "The GitHub-owned workflow emitted a non-blocking Node.js 20 deprecation annotation while executing the actions on Node.js 24; the deployment conclusion remained success."
+      ],
       "blockingReason": null
     },
     {
       "id": "G11",
       "stage": "production_verification",
       "title": "Verify the live Bengali landing and MBCL reader",
-      "status": "pending",
+      "status": "passed",
       "dependsOn": [
         "G10"
       ],
@@ -274,7 +284,14 @@
         "A live MBCL direct link restores the expected chapter and verse.",
         "The deployed commit and production evidence are recorded."
       ],
-      "evidence": [],
+      "evidence": [
+        "Production returned HTTP 200 for index.html, injil-yahya.html, database/mbcl/manifest.js, and BBS_MBCL_DEPLOY_TASKS.json.",
+        "The live landing page resolved html lang=bn, selected the বাংলা control, localized its title and footer, and forwarded lang=bn through all ten reader links.",
+        "The live John 3:16 link restored Bengali, chapter 3, #v16, 36 verse cards, a focused deep-linked 3:16 card, and a non-empty Arabic text block.",
+        "Live John 3:16 exactly rendered: “আল্লাহ্‌ মানুষকে এত মহব্বত করলেন যে, তাঁর একমাত্র পুুত্রকে তিনি দান করলেন, যেন যে কেউ সেই পুত্রের উপর ঈমান আনে সে বিনষ্ট না হয় কিন্তু অনন্ত জীবন পায়।",
+        "The live edition notice rendered কিতাবুল মোকাদ্দস (MBCL), The Bangladesh Bible Society, and the 2000/2006 copyright statements.",
+        "The deployed desktop landing and reader measurements reported matching client and scroll widths with no horizontal document overflow."
+      ],
       "blockingReason": null
     }
   ]
