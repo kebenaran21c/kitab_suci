@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taurat: Bilangan - Perjalanan di Padang Gurun">
-    <meta property="og:title" content="Taurat: Bilangan | Pusat Studi Kitabullah">
-    <title>Taurat: Bilangan | Pusat Studi Kitabullah</title>
+    <meta name="description" content="Kitab Taurat: Bilangan - Baca naskah asli dalam Bahasa Indonesia">
+    <title>Kitab Taurat: Bilangan | Pusat Studi Kitabullah</title>
 
     <!-- Branding -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -15,18 +14,18 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=mbcl-20260814-3">
 </head>
 
-<body>
+<body class="reader-page">
     <!-- Book Selector Overlay (Categorized Books) -->
     <div id="bookSelectorOverlay" class="book-selector-overlay">
         <div class="selector-container">
             <div class="selector-header">
-                <h2>Pilih Kitab</h2>
+                <h2 data-reader-i18n="chooseBook">Pilih Kitab</h2>
                 <button id="closeSelectorBtn" class="close-selector-btn" aria-label="Tutup">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 6L6 18M6 6l12 12" />
@@ -70,7 +69,7 @@
                 </button>
 
                 <div id="fontSettingsPanel" class="settings-panel">
-                    <label>Ukuran Teks</label>
+                    <label data-reader-i18n="textSize">Ukuran Teks</label>
                     <div class="font-control">
                         <span style="font-size: 14px">A</span>
                         <input type="range" id="fontSizeSlider" min="14" max="24" value="17" step="1">
@@ -79,7 +78,7 @@
                 </div>
 
                 <div class="chapter-selector-wrapper">
-                    <label for="chapterSelect" class="sr-only">Pilih Pasal</label>
+                    <label for="chapterSelect" class="sr-only" data-reader-i18n="chooseChapter">Pilih Pasal</label>
                     <select id="chapterSelect" class="chapter-select">
                         <!-- Options will be populated by JavaScript -->
                     </select>
@@ -90,6 +89,7 @@
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
+        <aside id="editionNotice" class="edition-notice" role="note" hidden></aside>
         <div id="versesContainer" class="verses-container">
             <!-- Verses will be dynamically loaded here -->
         </div>
@@ -100,10 +100,10 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
-                <span>Pasal Sebelumnya</span>
+                <span data-reader-i18n="previousChapter">Pasal Sebelumnya</span>
             </button>
             <button class="nav-btn next-chapter" id="nextChapterBtn">
-                <span>Pasal Selanjutnya</span>
+                <span data-reader-i18n="nextChapter">Pasal Selanjutnya</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 18l6-6-6-6" />
                 </svg>
@@ -117,7 +117,7 @@
                     <path d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
                     <path d="M12 8v4M12 16h.01" />
                 </svg>
-                <h2>Catatan Kaki</h2>
+                <h2 data-reader-i18n="footnotes">Catatan Kaki</h2>
             </div>
             <div id="footnotes-list" class="footnotes-list">
                 <!-- Footnotes will be populated here -->
@@ -178,7 +178,7 @@
                                 <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
                             </svg>
                         </div>
-                        <span>Salin Tautan</span>
+                        <span data-reader-i18n="copyLink">Salin Tautan</span>
                     </button>
                 </div>
             </div>
@@ -196,8 +196,10 @@
     <!-- Scripts -->
     <!-- Load pre-converted data for local file compatibility (fixes CORS issues) -->
     <script src="database/kitab_full_data.js"></script>
+    <script src="database/mbcl/manifest.js?v=mbcl-20260814-3"></script>
+    <script src="lang-toggle.js?v=mbcl-20260814-3"></script>
     <script>window.CURRENT_BOOK_ID = "bilangan";</script>
-    <script src="script.js"></script>
+    <script src="script.js?v=mbcl-20260814-3"></script>
 </body>
 
 </html>

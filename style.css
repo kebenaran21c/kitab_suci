@@ -418,6 +418,31 @@ input[type=range]::-moz-range-thumb {
     gap: var(--spacing-sm);
 }
 
+.edition-notice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.8rem;
+    margin-bottom: var(--spacing-sm);
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(26, 64, 38, 0.16);
+    border-radius: var(--radius-lg);
+    background: rgba(238, 242, 238, 0.78);
+    color: var(--color-text-light);
+    font-family: 'Noto Sans Bengali', var(--font-latin);
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+.edition-notice[hidden] {
+    display: none;
+}
+
+.edition-notice strong {
+    color: var(--color-primary);
+    font-size: 0.9rem;
+}
+
 .verse-card {
     background-color: var(--color-card);
     border-radius: var(--radius-lg);
@@ -457,6 +482,15 @@ input[type=range]::-moz-range-thumb {
 
 .verse-card:active {
     transform: scale(0.99);
+}
+
+.verse-card.deep-linked {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.22), var(--shadow-md);
+}
+
+.verse-card.deep-linked::before {
+    opacity: 1;
 }
 
 .verse-content {
@@ -563,6 +597,75 @@ input[type=range]::-moz-range-thumb {
     line-height: 1.8;
     color: var(--color-text-light);
     transition: font-size 0.2s ease;
+}
+
+@media (max-width: 380px) {
+    .header-content {
+        grid-template-columns: 36px minmax(0, 1fr) auto;
+        gap: 4px;
+        padding: 0.5rem 4px;
+    }
+
+    .back-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .book-toggle-btn {
+        min-width: 0;
+        overflow: hidden;
+        padding: 2px 4px;
+    }
+
+    .book-toggle-btn .toggle-content,
+    .book-toggle-btn .toggle-arabic,
+    .book-toggle-btn .toggle-indonesian {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        gap: 2px;
+        min-width: 0;
+    }
+
+    .action-btn-sm {
+        width: 32px;
+        height: 36px;
+    }
+
+    .chapter-selector-wrapper {
+        min-width: 0;
+    }
+
+    .chapter-select {
+        width: 82px;
+        min-width: 0;
+        padding: 0.45rem 1.45rem 0.45rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .settings-panel {
+        width: min(260px, calc(100vw - 16px));
+        right: 0;
+    }
+}
+
+.verse-bengali {
+    font-family: 'Noto Sans Bengali', 'Noto Sans', sans-serif;
+    font-size: var(--font-size-verse, 1.0625rem);
+    line-height: 1.9;
+    color: var(--color-text-light);
+    transition: font-size 0.2s ease;
+    word-break: normal;
+}
+
+.verse-subheading[lang="bn"] {
+    font-family: 'Noto Sans Bengali', 'Noto Sans', sans-serif;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 .verse-action-hint {
@@ -970,9 +1073,16 @@ input[type=range]::-moz-range-thumb {
         line-height: 2;
     }
 
-    .verse-indonesian {
+    .verse-indonesian,
+    .verse-bengali {
         font-size: var(--font-size-verse, 1rem);
         /* Use variable for adjustment */
+    }
+
+    .edition-notice {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0.75rem 0.85rem;
     }
 
     .chapter-navigation {

@@ -189,13 +189,17 @@ try {
     const originalData = loadDataFile(originalPath);
     const originalStats = verifyDataIntegrity(originalData, '원본 파일 (kitab_full_data.js)');
 
-    // 수정 파일 로드 및 검증
-    global.window = {};
-    const fixedData = loadDataFile(fixedPath);
-    const fixedStats = verifyDataIntegrity(fixedData, '수정 파일 (kitab_full_data_fixed.js)');
-
-    // 비교
-    const differences = compareDataFiles(originalData, fixedData);
+    // Optional historical comparison file. The current repository does not
+    // require it, so always validate the deployed data and compare only when
+    // a comparison fixture is present.
+    let fixedStats = null;
+    let differences = [];
+    if (fs.existsSync(fixedPath)) {
+        global.window = {};
+        const fixedData = loadDataFile(fixedPath);
+        fixedStats = verifyDataIntegrity(fixedData, '수정 파일 (kitab_full_data_fixed.js)');
+        differences = compareDataFiles(originalData, fixedData);
+    }
 
     // 결과 출력
     console.log('\n========== 검증 결과 요약 ==========');
@@ -206,18 +210,22 @@ try {
     console.log(`  오류: ${originalStats.errors.length}개`);
     console.log(`  경고: ${originalStats.warnings.length}개`);
 
-    console.log('\n[수정 파일]');
-    console.log(`  총 책: ${fixedStats.totalBooks}`);
-    console.log(`  총 챕터: ${fixedStats.totalChapters}`);
-    console.log(`  총 절: ${fixedStats.totalVerses}`);
-    console.log(`  오류: ${fixedStats.errors.length}개`);
-    console.log(`  경고: ${fixedStats.warnings.length}개`);
+    if (fixedStats) {
+        console.log('\n[수정 파일]');
+        console.log(`  총 책: ${fixedStats.totalBooks}`);
+        console.log(`  총 챕터: ${fixedStats.totalChapters}`);
+        console.log(`  총 절: ${fixedStats.totalVerses}`);
+        console.log(`  오류: ${fixedStats.errors.length}개`);
+        console.log(`  경고: ${fixedStats.warnings.length}개`);
 
-    console.log('\n[파일 간 차이점]');
-    if (differences.length === 0) {
-        console.log('  차이점 없음 - 두 파일의 구조가 동일합니다');
+        console.log('\n[파일 간 차이점]');
+        if (differences.length === 0) {
+            console.log('  차이점 없음 - 두 파일의 구조가 동일합니다');
+        } else {
+            differences.forEach(diff => console.log(`  - ${diff}`));
+        }
     } else {
-        differences.forEach(diff => console.log(`  - ${diff}`));
+        console.log('\n[비교 파일] 없음 - 현재 배포 데이터만 검증했습니다.');
     }
 
     // 상세 오류 출력
@@ -229,7 +237,7 @@ try {
         }
     }
 
-    if (fixedStats.errors.length > 0) {
+    if (fixedStats && fixedStats.errors.length > 0) {
         console.log('\n[수정 파일 오류 상세]');
         fixedStats.errors.slice(0, 10).forEach(err => console.log(`  - ${err}`));
         if (fixedStats.errors.length > 10) {
@@ -238,18 +246,19 @@ try {
     }
 
     // 경고 출력 (처음 5개만)
-    if (fixedStats.warnings.length > 0) {
-        console.log('\n[수정 파일 경고 (처음 5개)]');
-        fixedStats.warnings.slice(0, 5).forEach(warn => console.log(`  - ${warn}`));
-        if (fixedStats.warnings.length > 5) {
-            console.log(`  ... 외 ${fixedStats.warnings.length - 5}개 경고`);
+    const warningStats = fixedStats || originalStats;
+    if (warningStats.warnings.length > 0) {
+        console.log('\n[데이터 경고 (처음 5개)]');
+        warningStats.warnings.slice(0, 5).forEach(warn => console.log(`  - ${warn}`));
+        if (warningStats.warnings.length > 5) {
+            console.log(`  ... 외 ${warningStats.warnings.length - 5}개 경고`);
         }
     }
 
     console.log('\n========================================\n');
 
     // 종료 코드 설정
-    if (fixedStats.errors.length > 0 || differences.length > 0) {
+    if (originalStats.errors.length > 0 || (fixedStats && fixedStats.errors.length > 0) || differences.length > 0) {
         console.log('⚠️  검증 실패: 오류 또는 차이점이 발견되었습니다.');
         process.exit(1);
     } else {

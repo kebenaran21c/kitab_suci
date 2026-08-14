@@ -1,4 +1,5 @@
 import os
+import re
 
 # Configuration
 TEMPLATE_FILE = 'reader.html'
@@ -96,10 +97,20 @@ def generate():
         
         # 1. Update Title Tag
         # <title>Injil Yohanes | Gospel of John</title> -> <title>... | Pusat Studi Kitabullah</title>
-        content = content.replace('<title>Injil Yohanes | Gospel of John</title>', f"<title>{book['title_id']} | Pusat Studi Kitabullah</title>")
+        content = re.sub(
+            r'<title>.*?</title>',
+            f"<title>{book['title_id']} | Pusat Studi Kitabullah</title>",
+            content,
+            count=1,
+        )
         
         # 2. Update Meta Description
-        content = content.replace('content="Injil Yohanes - Gospel of John in Arabic and Indonesian"', f'content="{book["meta_desc"]}"')
+        content = re.sub(
+            r'<meta name="description" content="[^"]*">',
+            f'<meta name="description" content="{book["meta_desc"]}">',
+            content,
+            count=1,
+        )
 
         # 3. Update Header Title (Toggle style)
         # Target the spans inside bookToggleBtn
@@ -108,9 +119,9 @@ def generate():
         content = content.replace('<span class="toggle-indonesian">Injil Yahya</span>', f'<span class="toggle-indonesian">{book["title_id"]}</span>')
 
         # 4. Inject CURRENT_BOOK_ID before script.js
-        # Look for <script src="script.js"></script>
-        script_injection = f'<script>window.CURRENT_BOOK_ID = "{book["id"]}";</script>\n    <script src="script.js"></script>'
-        content = content.replace('<script src="script.js"></script>', script_injection)
+        # Match the versioned reader script and keep one explicit book ID per page.
+        script_injection = f'<script>window.CURRENT_BOOK_ID = "{book["id"]}";</script>\n    <script src="script.js?v=mbcl-20260814-3"></script>'
+        content = re.sub(r'<script src="script\.js(?:\?[^\"]*)?"></script>', script_injection, content, count=1)
 
         # Write file
         out_path = os.path.join(OUTPUT_DIR, book['filename'])

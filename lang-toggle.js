@@ -33,6 +33,7 @@ const translations = {
         "wr_card3_title": "Kunci Memahami Al-Quran Lebih Utuh",
         "wr_card3_intro": "💡 <em>Al-Quran menyebutkan Taurat dan Injil sebagai petunjuk (hudā). Membacanya membantu memahami <strong>konteks ayat-ayat Al-Quran secara utuh</strong>.</em>",
         "wr_card3_verse_title": "Surah Al-Ma'idah (5:68)",
+        "wr_card3_verse_text": "\"Katakanlah: 'Hai Ahli Kitab, kamu tidak berpegang pada suatu apa pun sebelum kamu <strong>menegakkan ajaran Taurat dan Injil</strong>...'\"",
         "wr_header_tabari": "👳‍♂️ Tafsir At-Tabari",
         "wr_card3_text": "<p>\"Landasan agama yang benar hanya tercapai apabila <strong>kita menegakkan ajaran Taurat dan Injil</strong>.\" (Petunjuk ini berlaku umum bagi pencari kebenaran).</p>",
         "wr_bio_tabari": "<strong>Ibnu Jarir Ath-Thabari</strong> (224-310 H). Dijuluki 'Bapak Para Mufassir'. Karyanya <em>Jami' al-Bayan</em> adalah tafsir lengkap tertua yang menjadi rujukan utama seluruh ulama setelahnya.",
@@ -197,7 +198,11 @@ const translations = {
         "cta_text": "Bacalah sendiri dan bandingkan. Jangan hanya mendengar—buktikan dengan membaca.",
         "reader_share_quote": "\"Bacalah dengan tenang. Ini untuk studi pribadi, bukan debat.\"",
         "reader_share_source": "— Pusat Studi Kitabullah & Hikmah",
-        "cta_btn": "📖 Baca Kitabullah (Taurat, Zabur, Injil)"
+        "cta_btn": "📖 Baca Kitabullah (Taurat, Zabur, Injil)",
+        "footer_rights": "© 2026 Pusat Studi Kitabullah & Hikmah. Hak cipta dilindungi.",
+        "footer_dua": "Kami tidak membeda-bedakan seorang pun di antara rasul-rasul-Nya (QS 2:285)",
+        "float_library": "📖 Buka Perpustakaan", "float_read": "Membaca",
+        "nav_home": "Beranda", "nav_why": "Kenapa?", "nav_library": "Pustaka"
     },
     "en": {
         "nav_back": "Back",
@@ -231,6 +236,7 @@ const translations = {
         "wr_card3_title": "Key to Understanding the Quran More Fully",
         "wr_card3_intro": "💡 <em>The Quran mentions the Torah and Gospel as guidance (hudā). Reading them helps understand <strong>the context of Quranic verses more completely</strong>.</em>",
         "wr_card3_verse_title": "Surah Al-Ma'idah (5:68)",
+        "wr_card3_verse_text": "\"Say, 'O People of the Book, you stand on nothing until you <strong>uphold the Torah and the Gospel</strong>...'\"",
         "wr_header_tabari": "👳‍♂️ Tafsir At-Tabari",
         "wr_card3_text": "<p>\"The foundation of true religion is only attained when <strong>we uphold the teachings of the Torah and the Gospel</strong>.\" (This guidance applies to all seekers of truth).</p>",
         "wr_bio_tabari": "<strong>Ibn Jarir al-Tabari</strong> (839–923 CE). Known as the 'Father of Exegetes'. His <em>Jami' al-Bayan</em> is the earliest major comprehensive Tafsir, serving as the primary source for all later scholars.",
@@ -390,7 +396,11 @@ const translations = {
         "cta_text": "Read for yourself and compare. Don't just listen—prove it by reading.",
         "reader_share_quote": "\"Read calmly. This is for personal study, not debate.\"",
         "reader_share_source": "— Center for Scripture & Wisdom Studies",
-        "cta_btn": "📖 Read Preserved Scriptures (Torah, Psalms, Gospel)"
+        "cta_btn": "📖 Read Preserved Scriptures (Torah, Psalms, Gospel)",
+        "footer_rights": "© 2026 Center for Scripture & Wisdom Studies. All rights reserved.",
+        "footer_dua": "We make no distinction between any of His messengers (Quran 2:285)",
+        "float_library": "📖 Open Library", "float_read": "Read",
+        "nav_home": "Home", "nav_why": "Why?", "nav_library": "Library"
     },
     "ko": {
         "nav_back": "뒤로가기",
@@ -423,6 +433,7 @@ const translations = {
 
         "wr_card3_title": "꾸란을 더 온전히 이해하는 열쇠",
         "wr_card3_intro": "💡 <em>꾸란은 토라와 복음을 인도(hudā)로 언급합니다. 이것들을 읽는 것은 <strong>꾸란 구절의 맥락을 온전히 이해하는 데</strong> 도움이 됩니다.</em>",
+        "wr_card3_verse_title": "수랏 알 마이다 (5:68)",
         "wr_card3_verse_text": "\"말하라: '오 경전의 백성이여, 당신들은 <strong>토라와 복음을 세우기 전까지</strong> 아무것도 가지고 있지 않습니다...'\"",
         "wr_header_tabari": "👳‍♂️ 타프시르 알-타바리",
         "wr_card3_text": "<p>\"참된 종교의 기반은 우리가 <strong>타우라트와 인질을 올바로 세울 때</strong> 비로소 달성된다.\" (이것은 진리를 찾는 모든 이에게 적용되는 원칙입니다).</p>",
@@ -582,8 +593,186 @@ const translations = {
         "cta_text": "직접 읽고 비교하십시오. 듣기만 하지 마시고—읽음으로 증명하십시오.",
         "reader_share_quote": "\"차분히 읽으십시오. 이것은 개인 연구를 위한 것이지 논쟁을 위한 것이 아닙니다.\"",
         "reader_share_source": "— 성서와 지혜 연구 센터",
-        "cta_btn": "📖 보존된 성서(타우라트 · 자부르 · 인질) 읽기"
+        "cta_btn": "📖 보존된 성서(타우라트 · 자부르 · 인질) 읽기",
+        "footer_rights": "© 2026 성서와 지혜 연구 센터. 모든 권리 보유.",
+        "footer_dua": "우리는 그분의 사도들 가운데 누구도 차별하지 않습니다 (꾸란 2:285)",
+        "float_library": "📖 성경 도서관 열기", "float_read": "읽기",
+        "nav_home": "홈", "nav_why": "왜 읽나요?", "nav_library": "도서관"
     }
+};
+
+// Bengali is the BBS audience language. The English spread is an intentional
+// safety fallback for any future key that is added before its Bengali copy.
+translations.bn = {
+    ...translations.en,
+    "nav_back": "ফিরে যান",
+    "hero_title_indo": "কিতাব ও হিকমাহ অধ্যয়ন কেন্দ্র",
+    "hero_subtitle_main": "ডিজিটাল আর্কাইভ: আল-কোরআনের নির্দেশনায় সত্যের অনুসন্ধান",
+    "hero_subtitle_sec": "খোলা হৃদয় ও গভীর উপলব্ধি নিয়ে পবিত্র কিতাব অধ্যয়ন",
+    "welcome_title": "শান্তির শুভেচ্ছা",
+    "welcome_greeting": "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু",
+    "welcome_text_1": "এই অধ্যয়ন পাতায় স্বাগতম। ধর্মীয় বিতর্কের জন্য নয়, বরং <strong>উলুল আলবাব</strong>—বোধসম্পন্ন মানুষ—হতে আগ্রহীদের ব্যক্তিগত গবেষণার স্থান হিসেবে সাইটটি তৈরি হয়েছে।",
+    "welcome_text_2": "আমরা বিশ্বাস করি, আল্লাহ্‌ নবীদের মাধ্যমে পর্যায়ক্রমে তাঁর ওহি নাজিল করেছেন। আল্লাহ্‌র পূর্ণ পরিকল্পনার <strong>অভিন্ন সূত্র</strong> বুঝতে আল-কোরআনের আগে নাজিল হওয়া কিতাবুল্লাহ্‌র মূল বাণী পড়া প্রয়োজন।",
+    "why_read_title": "একজন মুসলিম কেন পূর্ববর্তী কিতাব পড়বেন?",
+    "why_read_subtitle": "(মানুষের কথা নয়—আল-কোরআনের সরাসরি নির্দেশনা)",
+    "wr_card1_title": "মুত্তাকী হওয়ার শর্ত",
+    "wr_card1_verse_title": "সূরা আল-বাকারা (২:৪)",
+    "wr_card1_verse_text": "“আর যারা তোমার প্রতি নাজিল করা কিতাব এবং <strong>তোমার আগে নাজিল করা কিতাবসমূহে ঈমান আনে...</strong>”",
+    "wr_header_ibnkathir": "👳‍♂️ তাফসির ইবনে কাসির",
+    "wr_card1_text": "<p>পূর্ববর্তী কিতাবসমূহে ঈমান আনা মানুষের তাকওয়াকে <strong>আরও পূর্ণ</strong> করে, কারণ তার ঈমানের পরিধি বিস্তৃত।</p>",
+    "wr_card1_outro": "💡 <em><strong>আল-কোরআন শিক্ষা দেয়</strong>, আল্লাহ্‌র সব কিতাব এক অভিন্ন ধারার অংশ। তৌরাত ও ইঞ্জিল পড়া পূর্ণ ঈমানের অংশ।</em>",
+    "wr_bio_ibnkathir": "<strong>ইমাদুদ্দিন ইসমাইল ইবনে কাসির</strong> (১৩০১–১৩৭৩)। মামলুক যুগের বিশিষ্ট ইতিহাসবিদ ও মুফাসসির; তাঁর তাফসির বর্ণনাভিত্তিক ব্যাখ্যার গুরুত্বপূর্ণ মানদণ্ড।",
+    "wr_card2_title": "সব কিতাবে ঈমান আনার নির্দেশ",
+    "wr_card2_verse_title": "সূরা আন-নিসা (৪:১৩৬)",
+    "wr_card2_verse_text": "“হে মুমিনগণ, আল্লাহ্‌, তাঁর রাসূল, রাসূলের প্রতি নাজিল করা কিতাব এবং <strong>আগে নাজিল করা কিতাবে</strong> ঈমান রাখো...”",
+    "wr_header_saadi": "👳‍♂️ তাফসির আস-সা'দী",
+    "wr_card2_text": "<p>পূর্ববর্তী কিতাবসমূহে ঈমান <strong>ঈমানের একটি স্তম্ভ</strong>। আল্লাহ্‌র কোনো একটি কিতাব অস্বীকার করা মানে সব কিতাব অস্বীকার করা।</p>",
+    "wr_card2_outro": "💡 <em>একটি কিতাবও অস্বীকার করা ঈমানের স্তম্ভগুলো অস্বীকার করার শামিল। পড়া আমাদের জ্ঞান ও উপলব্ধিকে গভীর করে।</em>",
+    "wr_bio_saadi": "<strong>আবদুর রহমান আস-সা'দী</strong> (১৮৮৯–১৯৫৬)। সৌদি আলেম; তাঁর তাফসির স্পষ্ট ভাষা ও ব্যবহারিক আত্মিক শিক্ষার জন্য পরিচিত।",
+    "wr_card3_title": "আল-কোরআন আরও পূর্ণভাবে বোঝার চাবিকাঠি",
+    "wr_card3_intro": "💡 <em>আল-কোরআন তৌরাত ও ইঞ্জিলকে হেদায়াত বলে উল্লেখ করে। এগুলো পড়লে <strong>কোরআনের আয়াতের প্রেক্ষাপট</strong> আরও ভালোভাবে বোঝা যায়।</em>",
+    "wr_card3_verse_title": "সূরা আল-মায়িদা (৫:৬৮)",
+    "wr_card3_verse_text": "“বলুন, ‘হে কিতাবিগণ, তোমরা <strong>তৌরাত ও ইঞ্জিল কায়েম না করা পর্যন্ত</strong> কোনো ভিত্তির উপর নও...’”",
+    "wr_header_tabari": "👳‍♂️ তাফসির আত-তাবারী",
+    "wr_card3_text": "<p>সত্য দ্বীন প্রতিষ্ঠার আলোচনায় <strong>তৌরাত ও ইঞ্জিলের শিক্ষা কায়েমের</strong> কথাও উল্লেখ করা হয়েছে।</p>",
+    "wr_bio_tabari": "<strong>ইবনে জারির আত-তাবারী</strong> (৮৩৯–৯২৩)। প্রাচীন যুগের প্রধান মুফাসসির; তাঁর <em>জামি আল-বায়ান</em> পরবর্তী তাফসিরের গুরুত্বপূর্ণ উৎস।",
+    "wr_card4_title": "এর মধ্যে রয়েছে ‘নূর’",
+    "wr_card4_verse_title": "সূরা আল-মায়িদা (৫:৪৬)",
+    "wr_card4_verse_text": "“...আমি তাঁকে ইঞ্জিল দিয়েছি, <strong>যার মধ্যে ছিল হেদায়াত ও নূর</strong>, এবং যা তার আগের কিতাবকে সত্যায়িত করে...”",
+    "wr_card4_text": "<p>ইঞ্জিল ঈসা আল-মসীহ্‌ আ.-এর কাছে <strong>সত্যের নূর</strong> হিসেবে নাজিল হয়েছিল।</p>",
+    "wr_card4_outro": "💡 <em>ইঞ্জিল কোনো অপরিচিত কিতাব নয়। <strong>আল-কোরআনই একে ‘হেদায়াত ও নূর’ বলে</strong>।</em>",
+    "btn_verify_quran": "কোরআনে যাচাই করুন",
+    "btn_check_source": "উৎস দেখুন",
+    "btn_read_more": "আরও পড়ুন",
+    "dt_section_title": "গভীর বিষয় অনুসন্ধান করুন",
+    "dt_section_subtitle": "খোলা হৃদয় ও মন নিয়ে সত্যের অনুসরণ",
+    "dt_card1_title": "কিতাব কি বিকৃত হতে পারে?",
+    "dt_card1_desc": "<strong>ইবনে আব্বাস</strong>: ‘কেউ আল্লাহ্‌র কালাম পরিবর্তন করতে পারে না।’",
+    "dt_header_ibnabbas": "👳‍♂️ ইবনে আব্বাস",
+    "dt_bio_ibnabbas": "<strong>আবদুল্লাহ ইবনে আব্বাস</strong> (মৃ. ৬৮৭)। নবী মুহাম্মদ ﷺ-এর চাচাতো ভাই; <em>তারজুমানুল কোরআন</em> নামে পরিচিত।",
+    "dt_card2_title": "পড়া কি অনুমোদিত?",
+    "dt_card2_desc": "<strong>স্যার সাইয়িদ আহমদ খান</strong>: তৌরাত ও ইঞ্জিল নিয়ে গবেষণা।",
+    "dt_header_sayyid": "👳‍♂️ স্যার সাইয়িদ আহমদ খান",
+    "dt_bio_sayyid": "<strong>স্যার সাইয়িদ আহমদ খান</strong> (১৮১৭–১৮৯৮)। ভারতীয় মুসলিম সংস্কারক, আলীগড় মুসলিম বিশ্ববিদ্যালয়ের প্রতিষ্ঠাতা এবং <em>তাবয়িনুল কালাম</em>-এর লেখক।",
+    "dt_header_biqai": "👳‍♂️ ইমাম আল-বিকাঈ",
+    "dt_bio_biqai": "<strong>বুরহানুদ্দিন আল-বিকাঈ</strong> (১৪০৬–১৪৮০)। <em>নাজমুদ দুরার</em>-এর লেখক; কোরআনের বর্ণনা ব্যাখ্যায় তৌরাত ও ইঞ্জিল ব্যবহার করেছেন।",
+    "dt_card3_title": "ঈসা কে?",
+    "dt_card3_desc": "ইমাম আর-রাযী: তিনি আত্মিক জীবন দানের কারণে ‘রূহুল্লাহ্‌’।",
+    "dt_header_razi": "👳‍♂️ ইমাম ফখরুদ্দিন আর-রাযী",
+    "dt_bio_razi": "<strong>ফখরুদ্দিন আর-রাযী</strong> (১১৪৯–১২০৯)। বিশিষ্ট মুসলিম ধর্মতাত্ত্বিক ও দার্শনিক; <em>তাফসির আল-কাবির</em>-এর লেখক।",
+    "dt_card4_title": "নূর কোথায়?",
+    "dt_card4_desc": "ইমাম আল-গাযালী: ‘মৃতদের—দুনিয়াপ্রেমীদের—সঙ্গে বসো না।’",
+    "dt_header_ghazali": "👳‍♂️ ইমাম আল-গাযালী",
+    "dt_bio_ghazali": "<strong>আবু হামিদ আল-গাযালী</strong> (১০৫৮–১১১১)। <em>হুজ্জাতুল ইসলাম</em>; <em>ইহইয়া উলুমুদ্দিন</em>-এর লেখক।",
+    "tp_title": "আল্লাহ্‌র কালাম কি বিকৃত হতে পারে?",
+    "tp_subtitle": "আল্লাহ্‌র কিতাব আল-কোরআন থেকে ভিত্তি",
+    "tp_intro": "‘তাহরিফ’ বলতে মূল পাঠের পরিবর্তন, নাকি ব্যাখ্যার বিকৃতি বোঝায়—এ নিয়ে আলেমদের ভিন্নমত আছে। তাই <strong>নিজে পড়া ও তুলনা করা</strong> উত্তম পথ।",
+    "tp_quote_title": "👳‍♂️ আবদুল্লাহ ইবনে আব্বাস রা.-এর মত",
+    "tp_quote_text": "এই বিষয়ে আল-কোরআন একটি গুরুত্বপূর্ণ ভিত্তি দেয়:",
+    "tp_quote_block": "‘<strong>তোমার প্রতিপালকের বাণী সত্য ও ন্যায়ে পূর্ণ</strong>; <strong>তাঁর বাণী পরিবর্তনকারী কেউ নেই</strong>।’ (৬:১১৫)<br><br>‘আল্লাহ্‌র বাণীর কোনো পরিবর্তন নেই।’ (১০:৬৪)",
+    "tp_debate_note": "⚠️ <em>এই বর্ণনার ব্যাখ্যা নিয়ে আলেমদের মতভেদ আছে। তাই প্রজ্ঞাপূর্ণ উপায় হলো মূল উৎস সরাসরি পড়া।</em>",
+    "tp_conclusion_title": "যুক্তিসংগত উপসংহার",
+    "tp_conclusion_text": "আল্লাহ্‌র বাণী ও পূর্ববর্তী কিতাবের ইতিহাস নিয়ে সিদ্ধান্ত নেওয়ার আগে প্রাচীন পাণ্ডুলিপি ও বর্তমান পাঠ পাশাপাশি অধ্যয়ন করা উচিত।",
+    "tp_citation_full": "📚 <strong>উৎস:</strong> সূরা আল-আনআম ৬:১১৫, ইউনুস ১০:৬৪ এবং আলে ইমরান ৩:৭৮।",
+    "tp_btn_quran": "📖 Quran.com-এ আয়াত পড়ুন",
+    "tp_ibnabbas_intro": "ইবনে আব্বাসের তাফসিরে এই আয়াতের কয়েকটি গুরুত্বপূর্ণ অর্থ আলোচিত হয়েছে:",
+    "tp_ibnabbas_quote": "<strong>‘তাঁর বাণী’</strong> সত্য ও ন্যায়ে পূর্ণ আল-কোরআনকে বোঝায়; কেউ আল্লাহ্‌র প্রতিশ্রুতি ও ফয়সালা বাতিল করতে পারে না।",
+    "tp_ibnabbas_application": "💡 <em>এই কারণেই পূর্ববর্তী কিতাবগুলো নিজে পড়া জরুরি—আল্লাহ্‌র হেদায়াতের ধারাবাহিকতা যাচাই করার জন্য।</em>",
+    "tp_ibnabbas_citation": "📚 <strong>উৎস:</strong> সূরা ৬:১১৫-এর তাফসিরে ইবনে আব্বাসের নামে বর্ণিত ব্যাখ্যা।",
+    "tp_btn_scholar": "👨‍🎓 আলেমের তাফসির দেখুন",
+    "tp_why_important_title": "এটি কেন গুরুত্বপূর্ণ?",
+    "tp_why_important_text": "‘তাহরিফ’-এর অর্থ নিয়ে মতভেদ থাকায়, <strong>নিজে কিতাবগুলো পড়ে</strong> আল-কোরআনের সঙ্গে তুলনা করাই উত্তম।",
+    "tp_dead_sea_text": "বিশ শতকে আবিষ্কৃত <strong>ডেড সি স্ক্রলস</strong> তৌরাত ও যাবুরের পাঠ-ইতিহাস গবেষণার গুরুত্বপূর্ণ প্রাচীন সাক্ষ্য।",
+    "tc_title": "মুসলিমরা কি ইঞ্জিল পড়তে পারেন?",
+    "tc_subtitle": "যুগে যুগে আলেমদের পদচিহ্ন",
+    "tc_intro": "কোরআনের আয়াতের পারস্পরিক প্রেক্ষাপট বুঝতে কিছু প্রাচীন আলেম পূর্ববর্তী কিতাব অধ্যয়ন করেছেন।",
+    "tc_biqai_title": "👳‍♂️ ইমাম বুরহানুদ্দিন আল-বিকাঈ (মৃ. ৮৮৫ হি.)",
+    "tc_biqai_intro": "তিনি <strong><em>নাজমুদ দুরার</em></strong>-এর লেখক। ওয়ালিদ এ. সালেহের গবেষণা অনুযায়ী, কোরআনের সঙ্গে তৌরাত ও ইঞ্জিলের তুলনাকে তিনি মূল্যবান মনে করতেন।",
+    "tc_biqai_paraphrase": "📝 <strong>গবেষণার সারাংশ:</strong> পূর্ববর্তী কিতাবের সঙ্গে কোরআনের সামঞ্জস্য সত্যের সাক্ষ্য হতে পারে; যাচাই ও ব্যাখ্যার জন্য উদ্ধৃতি গ্রহণযোগ্য।",
+    "tc_read_original": "💡 <em>এটি আল-বিকাঈর সরাসরি উদ্ধৃতি নয়, গবেষণার সারসংক্ষেপ। পূর্ণ প্রেক্ষাপটের জন্য মূল উৎস পড়ুন।</em>",
+    "tc_biqai_citation": "📚 <strong>গবেষণা-উৎস:</strong> Walid A. Saleh, <em>In Defense of the Bible</em>, Brill, 2008।",
+    "tc_sayyid_title": "👳‍♂️ স্যার সাইয়িদ আহমদ খান (ঊনবিংশ শতাব্দী)",
+    "tc_sayyid_intro": "তিনি মুসলিম রচিত প্রথম বাইবেল-ভাষ্য <em>তাবয়িনুল কালাম</em> লিখেছিলেন।",
+    "tc_sayyid_quote": "তাঁর আলোচনায় বর্তমান তৌরাত ও ইঞ্জিলের পাঠের ঐতিহাসিক ধারাবাহিকতার পক্ষে যুক্তি দেওয়া হয়েছে।",
+    "tc_sayyid_citation": "📚 <strong>উৎস:</strong> স্যার সাইয়িদ আহমদ খান, <em>তাবয়িনুল কালাম</em>।",
+    "tc_btn_biqai_source": "🔗 বই দেখুন (Brill Academic)",
+    "tc_quran_title": "📖 তৌরাত ও ইঞ্জিল সম্পর্কে কোরআনের আয়াত",
+    "tc_quran_intro": "💡 <em>তৌরাত ও ইঞ্জিলের সঙ্গে কোরআন পড়লে আল্লাহ্‌র পূর্ণ পরিকল্পনার প্রেক্ষাপট বোঝা সহজ হয়।</em>",
+    "tc_quran_verse": "‘হে কিতাবিগণ! তোমরা তৌরাত, ইঞ্জিল ও তোমাদের রবের পক্ষ থেকে নাজিল করা বিধান কায়েম না করা পর্যন্ত কোনো ভিত্তির উপর নও।’ (৫:৬৮)",
+    "tc_btn_quran": "📖 Quran.com-এ ৫:৬৮ পড়ুন",
+    "tc_btn_scholar": "📚 স্যার সাইয়িদের কাজ সম্পর্কে পড়ুন",
+    "tc_ulul_albab_title": "উলুল আলবাব হোন",
+    "tc_ulul_albab_text": "পড়ার কারণে ঈমান হারানোর ভয় করবেন না। তৌরাত ও ইঞ্জিল পড়ে আল্লাহ্‌র পরিকল্পনার ধারাবাহিকতা আরও পূর্ণভাবে বোঝা যায়।",
+    "tc_cta_text": "নিজে মূল কিতাব পড়ে দেখুন।",
+    "tc_cta_btn": "📖 তৌরাত পড়া শুরু করুন",
+    "ti_title": "ঈসা আল-মসীহ্‌ আ. আসলে কে?",
+    "ti_subtitle": "‘রূহুল্লাহ্‌’ ও ‘কালিমাতুল্লাহ্‌’-এর অর্থ",
+    "ti_intro": "আল-কোরআন ঈসা আল-মসীহ্‌ আ.-কে ‘আল্লাহ্‌র কালাম’ ও ‘তাঁর পক্ষ থেকে রূহ’ (৪:১৭১) বলে মর্যাদাপূর্ণ উপাধি দিয়েছে।",
+    "ti_quote_title": "👳‍♂️ তাফসির ফখরুদ্দিন আর-রাযী",
+    "ti_quote_block": "তাঁকে ‘রূহ’ বলা হয়েছে—যেমন রূহ দেহকে জীবন দেয়, তেমনি তাঁর হেদায়াত মৃত হৃদয়কে জীবিত করে।",
+    "ti_razi_intro": "<em>মাফাতিহুল গায়ব</em>-এ ইমাম আর-রাযী ‘রূহুল্লাহ্‌’ উপাধির বিভিন্ন সম্ভাব্য ব্যাখ্যা উল্লেখ করেছেন।",
+    "ti_razi_extra": "‘কালিমাতুল্লাহ্‌’-এর একটি ব্যাখ্যা হলো, ঈসা আ. আল্লাহ্‌র ‘কুন’ আদেশে সরাসরি সৃষ্টি হয়েছেন। আর-রাযী চিন্তার জন্য একাধিক ব্যাখ্যা উপস্থাপন করেন।",
+    "ti_read_yourself": "💡 <em>বিভিন্ন ব্যাখ্যা থাকায় মূল উৎস নিজে পড়ে অর্থ নিয়ে চিন্তা করাই উত্তম।</em>",
+    "ti_quran_title": "📖 কোরআনের আয়াত",
+    "ti_quran_verse": "‘মসীহ্‌ ঈসা ইবনে মরিয়ম আল্লাহ্‌র রাসূল, মরিয়মের কাছে পৌঁছানো <strong>তাঁর কালাম</strong> এবং <strong>তাঁর পক্ষ থেকে রূহ</strong>।’ (৪:১৭১)",
+    "ti_btn_quran": "📖 Quran.com-এ ৪:১৭১ পড়ুন",
+    "ti_btn_scholar": "👨‍🎓 আর-রাযীর তাফসির দেখুন",
+    "ti_razi_citation": "📚 <strong>উৎস:</strong> <em>তাফসির আল-কাবির (মাফাতিহুল গায়ব)</em>, ৪:১৭১-এর ব্যাখ্যা।",
+    "ti_conclusion_title": "জীবনের উৎস",
+    "ti_conclusion_text": "আল-কোরআনে ঈসা আল-মসীহ্‌ আ.-কে দেওয়া উপাধি তাঁর ভূমিকা ও শিক্ষা নিয়ে গভীরভাবে ভাবতে আহ্বান করে।",
+    "tl_title": "পূর্ণ নৈতিকতার নূর",
+    "tl_subtitle": "ইহইয়া উলুমুদ্দিনে ঈসা আল-মসীহ্‌ আ.",
+    "tl_intro": "ইমাম আল-গাযালী হৃদয়ের কোমলতা শেখাতে তাঁর রচনায় ঈসা আল-মসীহ্‌ আ.-এর বাণী বহুবার উদ্ধৃত করেছেন।",
+    "tl_quote_title": "👳‍♂️ ইমাম আল-গাযালীর উদ্ধৃতি",
+    "tl_quote_block": "‘মৃতদের সঙ্গে বসো না, তাহলে তোমাদের হৃদয়ও মরে যাবে।’ জিজ্ঞেস করা হলো, ‘মৃত কারা?’ তিনি বললেন, ‘যারা দুনিয়াকে ভালোবাসে।’",
+    "tl_ghazali_intro": "<em>হুজ্জাতুল ইসলাম</em> ইমাম আল-গাযালী <strong>ইহইয়া উলুমুদ্দিন</strong>-এ হৃদয়ের পবিত্রতা ও যুহদের উদাহরণ হিসেবে ঈসা আ.-এর কথা উদ্ধৃত করেছেন।",
+    "tl_ghazali_quote_intro": "দুনিয়ার ভালোবাসা হৃদয়কে মেরে ফেলার বিপদ নিয়ে একটি স্মরণীয় বাণী:",
+    "tl_hikmah_intro": "<em>যুহদ সাহিত্যে বহুল উদ্ধৃত হিকমাহ:</em>",
+    "tl_quran_title": "📖 দুনিয়ার জীবন ও আখিরাত সম্পর্কে কোরআনের আয়াত:",
+    "tl_quran_verse_57_20": "<strong>‘দুনিয়ার জীবন কেবল খেলা, কৌতুক ও মোহ...’</strong> (৫৭:২০)",
+    "tl_quran_verse_29_64": "<strong>‘দুনিয়ার জীবন কেবল খেল-তামাশা; আখিরাতের জীবনই প্রকৃত জীবন।’</strong> (২৯:৬৪)",
+    "tl_quran_verse_87_17": "<strong>‘তোমরা দুনিয়ার জীবনকে প্রাধান্য দাও, অথচ আখিরাত উত্তম ও স্থায়ী।’</strong> (৮৭:১৬–১৭)",
+    "tl_ghazali_citation": "📚 <strong>মূল উৎস:</strong> ইমাম আল-গাযালী, <em>ইহইয়া উলুমুদ্দিন</em>।",
+    "tl_quran_sources_title": "কোরআনের আয়াত:",
+    "tl_additional_refs_title": "অতিরিক্ত সূত্র:",
+    "tl_btn_archive_ihya": "🔗 Archive.org-এ ইহইয়ার পাঠ",
+    "tl_conclusion_title": "অন্ধকার হৃদয়ের জন্য নূর",
+    "tl_conclusion_text": "উম্মাহর হৃদয় পবিত্র করতে ইমাম আল-গাযালী যদি ঈসা আ.-এর শিক্ষা থেকে হিকমাহ নেন, তবে সেই ইঞ্জিলে থাকা নূর আমাদেরও পড়া উচিত নয় কি?",
+    "lib_title": "পবিত্র কিতাবের পাঠাগার",
+    "lib_intro": "মূল উৎস পড়া সত্যের পথে এগোনোর উপায়।<br>যে কিতাব অধ্যয়ন করতে চান তা বেছে নিন।",
+    "lib_quran_title": "আল-কোরআন",
+    "lib_quran_desc": "মুহাম্মদ ﷺ-এর প্রতি নাজিল করা শেষ ওহি",
+    "btn_open_quran": "Quran.com-এ খুলুন",
+    "lib_taurat_title": "তৌরাত",
+    "lib_lang_hebrew": "আরবি / বাংলা (MBCL)",
+    "lib_taurat_desc": "সৃষ্টির শুরু ও নবী মূসার কাহিনি",
+    "book_genesis": "আদিপুস্তক",
+    "book_exodus": "যাত্রাপুস্তক",
+    "book_leviticus": "লেবীয় পুস্তক",
+    "book_numbers": "গণনা পুস্তক",
+    "book_deuteronomy": "দ্বিতীয় বিবরণ",
+    "lib_zabur_title": "জবুর",
+    "lib_zabur_desc": "নবী দাউদের দোয়া ও মুনাজাত",
+    "book_psalms": "গীত",
+    "lib_injil_title": "ইঞ্জিল",
+    "lib_lang_greek": "আরবি / বাংলা (MBCL)",
+    "lib_injil_desc": "ঈসা আল-মসীহের সুসংবাদ",
+    "book_matthew": "মথি",
+    "book_mark": "মার্ক",
+    "book_luke": "লূক",
+    "book_john": "যোহন",
+    "ref_title": "উৎস ও তথ্যসূত্র",
+    "ref_subtitle": "গবেষণার স্বচ্ছতা ও নির্ভরযোগ্য সূত্র",
+    "ref_cat_scripture": "পবিত্র কিতাব",
+    "ref_cat_tafsir": "তাফসির",
+    "cta_text": "নিজে পড়ুন ও তুলনা করুন। শুধু শুনবেন না—পড়ে যাচাই করুন।",
+    "reader_share_quote": "“শান্তভাবে পড়ুন। এটি ব্যক্তিগত অধ্যয়নের জন্য, বিতর্কের জন্য নয়।”",
+    "reader_share_source": "— কিতাব ও হিকমাহ অধ্যয়ন কেন্দ্র",
+    "cta_btn": "📖 সংরক্ষিত কিতাব পড়ুন (তৌরাত · জবুর · ইঞ্জিল)",
+    "footer_rights": "© ২০২৬ কিতাব ও হিকমাহ অধ্যয়ন কেন্দ্র। সর্বস্বত্ব সংরক্ষিত।",
+    "footer_dua": "আমরা তাঁর রাসূলদের কারও মধ্যে পার্থক্য করি না (কোরআন ২:২৮৫)",
+    "float_library": "📖 কিতাবের পাঠাগার খুলুন", "float_read": "পড়ুন",
+    "nav_home": "হোম", "nav_why": "কেন?", "nav_library": "পাঠাগার"
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -593,13 +782,17 @@ document.addEventListener("DOMContentLoaded", function () {
         <button class="lang-btn" data-lang="id">ID</button>
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="ko">KR</button>
+        <button class="lang-btn" data-lang="bn">বাংলা</button>
     `;
     document.body.appendChild(langToggleContainer);
+    langToggleContainer.setAttribute("role", "group");
+    langToggleContainer.setAttribute("aria-label", "Language / 언어 / ভাষা");
 
     // Style the container dynamically if not in CSS
     Object.assign(langToggleContainer.style, {
         position: "fixed",
-        top: "20px",
+        top: document.body.classList.contains("reader-page") ? "auto" : "20px",
+        bottom: document.body.classList.contains("reader-page") ? "20px" : "auto",
         right: "20px",
         zIndex: "1000",
         background: "rgba(238, 242, 238, 0.9)", // Light gray/greenish tint match
@@ -613,11 +806,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const buttons = langToggleContainer.querySelectorAll(".lang-btn");
     buttons.forEach(btn => {
+        const languageNames = { id: "Bahasa Indonesia", en: "English", ko: "한국어", bn: "বাংলা" };
+        btn.setAttribute("aria-label", languageNames[btn.dataset.lang]);
+        btn.setAttribute("aria-pressed", "false");
         Object.assign(btn.style, {
             border: "none",
             background: "transparent",
             cursor: "pointer",
-            padding: "4px 12px",
+            padding: "4px 10px",
             borderRadius: "20px",
             fontWeight: "700",
             fontSize: "0.75rem",
@@ -632,22 +828,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Load saved language
-    const savedLang = localStorage.getItem("selectedLang") || "id";
+    const queryLang = new URLSearchParams(window.location.search).get("lang");
+    const savedLang = queryLang || localStorage.getItem("selectedLang") || "id";
     setLanguage(savedLang);
 });
 
 function setLanguage(lang) {
+    if (!translations[lang]) lang = "id";
     localStorage.setItem("selectedLang", lang);
     document.documentElement.lang = lang; // Update HTML lang attribute
+    if (translations[lang].hero_title_indo) document.title = translations[lang].hero_title_indo;
 
     // Update active button state
     document.querySelectorAll(".lang-btn").forEach(btn => {
         if (btn.dataset.lang === lang) {
             btn.style.background = "#1A4026";
             btn.style.color = "white";
+            btn.setAttribute("aria-pressed", "true");
         } else {
             btn.style.background = "transparent";
             btn.style.color = "#1A4026";
+            btn.setAttribute("aria-pressed", "false");
         }
     });
 
@@ -672,4 +873,16 @@ function setLanguage(lang) {
             }
         }
     });
+
+    // Keep the chosen language when entering any reader page.
+    document.querySelectorAll("a.book-link").forEach(link => {
+        const url = new URL(link.getAttribute("href"), window.location.href);
+        url.searchParams.set("lang", lang);
+        link.setAttribute("href", `${url.pathname.split('/').pop()}${url.search}${url.hash}`);
+    });
+
+    window.dispatchEvent(new CustomEvent("kitab:languagechange", { detail: { lang } }));
 }
+
+window.setKitabLanguage = setLanguage;
+window.getKitabLanguage = () => localStorage.getItem("selectedLang") || "id";

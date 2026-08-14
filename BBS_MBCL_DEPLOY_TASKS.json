@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "project": "BBS Kitabul Mukkadas MBCL Bengali edition for kitab_suci",
+  "goal": "Add the official BBS MBCL Bengali experience, validate every gate, deploy to GitHub Pages, and verify production.",
+  "statusColumn": "status",
+  "allowedStatuses": [
+    "pending",
+    "in_progress",
+    "passed",
+    "blocked"
+  ],
+  "repository": {
+    "localPath": "C:/Users/cyion/Documents/Codex/2026-08-11/new-chat/kitab_suci",
+    "remote": "https://github.com/kebenaran21c/kitab_suci.git",
+    "productionUrl": "https://kebenaran21c.github.io/kitab_suci/",
+    "baseBranch": "main"
+  },
+  "authorizations": {
+    "bbsPermission": {
+      "status": "user_attested",
+      "attestedAt": "2026-08-13",
+      "scopeClaimed": "BBS authorized and requested creation of the Kitabul Mukkadas Bengali version."
+    },
+    "deployment": {
+      "status": "authorized_by_user",
+      "authorizedAt": "2026-08-13",
+      "scope": "Commit, push, deploy, and verify GitHub Pages after all validation gates pass."
+    }
+  },
+  "updatedAt": "2026-08-14T22:55:45.8507706+09:00",
+  "currentGate": "G09",
+  "tasks": [
+    {
+      "id": "G00",
+      "stage": "goal_initialization",
+      "title": "Initialize goal mode and gated execution",
+      "status": "passed",
+      "dependsOn": [],
+      "acceptanceCriteria": [
+        "Goal mode is active.",
+        "Deployment authority is explicitly recorded."
+      ],
+      "evidence": [
+        "Goal created for BBS MBCL implementation through production verification.",
+        "User explicitly requested JSON status tracking, gated progression, and deployment."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G01",
+      "stage": "repository_baseline",
+      "title": "Verify clean repository, remote, and GitHub authentication",
+      "status": "passed",
+      "dependsOn": [
+        "G00"
+      ],
+      "acceptanceCriteria": [
+        "Working tree has no pre-existing changes.",
+        "Origin and base branch are known.",
+        "Authenticated GitHub identity can access the publishing workflow."
+      ],
+      "evidence": [
+        "git status: ## main...origin/main with no changed paths.",
+        "origin: https://github.com/kebenaran21c/kitab_suci.git",
+        "current branch: main",
+        "gh 2.91.0 authenticated as daniel21c with repo and workflow scopes."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G02",
+      "stage": "official_source_intake",
+      "title": "Acquire and fingerprint the authoritative BBS MBCL source",
+      "status": "passed",
+      "dependsOn": [
+        "G01"
+      ],
+      "acceptanceCriteria": [
+        "The source is identifiable as BBS Kitabul Mukkadas MBCL.",
+        "The selected 10-book scope is available in machine-readable form or reproducibly extracted from an official BBS-authorized surface.",
+        "Source identity, attribution, extraction date, and SHA-256 content fingerprints are recorded.",
+        "Raw editorial files are not exposed in the public repository unless approved."
+      ],
+      "evidence": [
+        "Bibliatodo exposes the Kitabul Mukkadas text as structured chapter pages and identifies the loaded edition as version 95.",
+        "The source page attribution states The Bangladesh Bible Society, 2000 (single column) and 2006 (double column).",
+        "Book and chapter mapping is fixed for the existing 10-book scope: 426 chapters total.",
+        "Genesis 1:1, Genesis 1:3-5, and John 3:16 exactly matched independent MBCL samples before bulk intake.",
+        "A legacy two-part PDF was fingerprinted and rejected because its wording did not match MBCL.",
+        "All 426 chapters passed attribution, contiguous range, encoding, and chapter-end coverage validation.",
+        "Generated scope: 10 books, 426 chapters, 11,718 ranges covering 12,091 MBCL-numbered verses.",
+        "Normalized content SHA-256: c942284f49e0fbef56225c64e0879000b480a54a7b729e16a19d5f93d51558bf.",
+        "MBCL John 7 ends at 52 and its John 8:1 includes the sentence commonly numbered John 7:53; this official versification difference is recorded rather than invented."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G03",
+      "stage": "data_pipeline",
+      "title": "Create deterministic MBCL import, manifest, and per-book payloads",
+      "status": "passed",
+      "dependsOn": [
+        "G02"
+      ],
+      "acceptanceCriteria": [
+        "Canonical book IDs map to the existing 10 reader books.",
+        "Merged verse ranges are preserved without invented splits.",
+        "Generated payloads are deterministic and carry source metadata."
+      ],
+      "evidence": [
+        "py/import_mbcl_bibliatodo.py provides deterministic, resumable extraction with edition, range, encoding, and chapter coverage validation.",
+        "database/mbcl/manifest.js records MBCL publisher, copyright, source, book mapping, chapter coverage, checksums, and the John 7/8 versification exception.",
+        "Ten per-book JavaScript payloads were generated for 426 chapters without splitting merged source ranges.",
+        "Independent verify-mbcl-integrity.js gate passed: 10 books, 426 chapters, 11,718 ranges, 12,091 covered verses, SHA-256 c942284f49e0fbef56225c64e0879000b480a54a7b729e16a19d5f93d51558bf."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G04",
+      "stage": "bengali_ui",
+      "title": "Add Bengali landing UI and MBCL reader experience",
+      "status": "passed",
+      "dependsOn": [
+        "G03"
+      ],
+      "acceptanceCriteria": [
+        "Indonesian, English, Korean, and Bengali are available on the landing page and reader.",
+        "The selected language is shared between landing and reader through selectedLang.",
+        "Arabic and MBCL render together with BBS attribution.",
+        "Reference, locale, edition, chapter, and verse survive direct links and reloads."
+      ],
+      "evidence": [
+        "lang-toggle.js exposes ID, EN, KR, and বাংলা controls, persists selectedLang, and forwards lang to all ten reader links.",
+        "Reader pages lazy-load only the selected MBCL book, render Arabic RTL with Bengali LTR, and display the BBS edition and copyright notice.",
+        "Chapter, language, and verse deep links are synchronized through query parameters and #v anchors; merged MBCL ranges retain their source labels.",
+        "verify-site-localization.js passed: 4 languages, 85 landing translation keys, and 10 generated reader pages with valid script order and Bengali font support."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G05",
+      "stage": "data_integrity",
+      "title": "Validate MBCL coverage, ranges, encoding, and provenance",
+      "status": "passed",
+      "dependsOn": [
+        "G03",
+        "G04"
+      ],
+      "acceptanceCriteria": [
+        "No duplicate or colliding reference spans exist.",
+        "No empty Bengali text or Unicode replacement characters exist.",
+        "Declared book and chapter coverage matches generated payloads.",
+        "Representative verses match the authoritative source exactly."
+      ],
+      "evidence": [
+        "verify-mbcl-integrity.js passed all 10 books and 426 chapters with no empty text, replacement characters, duplicate starts, overlapping ranges, or coverage gaps.",
+        "Validated 11,718 source ranges covering 12,091 MBCL-numbered verses.",
+        "Representative exact samples for Genesis 1:1, Genesis 1:3-5, and John 3:16 passed.",
+        "Recomputed normalized content SHA-256 matched the manifest: c942284f49e0fbef56225c64e0879000b480a54a7b729e16a19d5f93d51558bf."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G06",
+      "stage": "regression_and_accessibility",
+      "title": "Run existing-language regression and accessibility checks",
+      "status": "passed",
+      "dependsOn": [
+        "G04"
+      ],
+      "acceptanceCriteria": [
+        "Indonesian, English, Korean, and Bengali language controls work on both landing and reader pages.",
+        "Existing Arabic and Indonesian reader content remains functional.",
+        "Keyboard, focus labels, mobile layout, and 200% zoom remain usable."
+      ],
+      "evidence": [
+        "verify-data-integrity.js passed the existing Arabic and Indonesian corpus: 10 books, 426 chapters, 12,092 verses, zero errors, and zero warnings.",
+        "Browser switching passed for ID, EN, KR, and বাংলা with localized book and chapter labels, persistent query state, and selected aria-pressed state.",
+        "The accessibility DOM exposes labeled native anchors, buttons, and select controls for navigation, font settings, chapter selection, verse copy/share, and all language controls.",
+        "The Bengali book chooser opened and closed correctly and listed all ten localized books in three localized categories.",
+        "A 320px effective viewport, used as the 200% zoom equivalent for a 640px layout, passed after the compact header correction with zero horizontal overflow."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G07",
+      "stage": "visual_qa",
+      "title": "Verify Bengali shaping and responsive rendering in a browser",
+      "status": "passed",
+      "dependsOn": [
+        "G05",
+        "G06"
+      ],
+      "acceptanceCriteria": [
+        "Bengali conjuncts render without clipping.",
+        "Arabic RTL and Bengali LTR remain visually distinct.",
+        "Desktop and 360px mobile layouts pass inspection."
+      ],
+      "evidence": [
+        "Desktop browser rendered Bengali conjuncts with Noto Sans Bengali and Arabic in a distinct RTL block without clipping.",
+        "Live local John 3:16 direct link restored chapter 3, #v16, the exact MBCL text, BBS attribution, and highlighted the requested verse.",
+        "Genesis 1:4 direct link correctly highlighted the MBCL 1:3-5 merged range while preserving #v4.",
+        "360px landing and reader iframe tests both reported zero horizontal overflow; the reader retained Bengali selection, BBS attribution, and the 3:16 target.",
+        "320px effective-width landing and reader tests reported zero document-level horizontal overflow after the compact header fix."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G08",
+      "stage": "release_review",
+      "title": "Review final diff, attribution, and release contents",
+      "status": "passed",
+      "dependsOn": [
+        "G05",
+        "G06",
+        "G07"
+      ],
+      "acceptanceCriteria": [
+        "Only intended MBCL and supporting changes are included.",
+        "Public attribution is present and permission records do not expose private contact data.",
+        "All prior gates are passed."
+      ],
+      "evidence": [
+        "Final status listed only the intended MBCL data, deterministic import and verification tools, Bengali localization, shared reader code, templates, and ten generated reader pages.",
+        "All syntax, MBCL integrity, existing-corpus regression, site-localization, and CRLF-aware whitespace checks passed immediately before release.",
+        "Secret-pattern review found no credentials or private contact data in the release files.",
+        "The public reader notice renders Kitabul Mukkadas (MBCL), The Bangladesh Bible Society, and the 2000/2006 copyright statements.",
+        "GitHub Pages is configured as a public HTTPS site built from main at repository root; main is not branch-protected."
+      ],
+      "blockingReason": null
+    },
+    {
+      "id": "G09",
+      "stage": "github_publish",
+      "title": "Commit and push the validated release to GitHub",
+      "status": "in_progress",
+      "dependsOn": [
+        "G08"
+      ],
+      "acceptanceCriteria": [
+        "An intentional commit contains only reviewed files.",
+        "The release branch is pushed successfully.",
+        "The deployment path to main is documented."
+      ],
+      "evidence": [],
+      "blockingReason": null
+    },
+    {
+      "id": "G10",
+      "stage": "production_deploy",
+      "title": "Deploy the approved release to GitHub Pages",
+      "status": "pending",
+      "dependsOn": [
+        "G09"
+      ],
+      "acceptanceCriteria": [
+        "The validated commit reaches the GitHub Pages source branch.",
+        "GitHub reports the Pages deployment as successful."
+      ],
+      "evidence": [],
+      "blockingReason": null
+    },
+    {
+      "id": "G11",
+      "stage": "production_verification",
+      "title": "Verify the live Bengali landing and MBCL reader",
+      "status": "pending",
+      "dependsOn": [
+        "G10"
+      ],
+      "acceptanceCriteria": [
+        "Production returns HTTP 200.",
+        "বাংলা selection works on the live landing page.",
+        "A live MBCL direct link restores the expected chapter and verse.",
+        "The deployed commit and production evidence are recorded."
+      ],
+      "evidence": [],
+      "blockingReason": null
+    }
+  ]
+}
