@@ -48,6 +48,10 @@
     --spacing-3xl: 4.5rem;
     /* Reduced from 6rem */
 
+    /* Fixed mobile navigation clearance, including a comfortable visual gap. */
+    --mobile-bottom-nav-clearance: 6rem;
+    --mobile-footer-clearance: 9.5rem;
+
     /* Effects */
     --radius-sm: 4px;
     --radius-md: 8px;
@@ -1040,11 +1044,16 @@ h4 {
 @media (max-width: 992px) {
     .mobile-bottom-nav {
         display: flex;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .footer {
+        padding-bottom: calc(var(--mobile-footer-clearance) + env(safe-area-inset-bottom, 0px));
     }
 
     /* Compact Floating CTA for Mobile & Tablets */
     .floating-cta {
-        bottom: 80px;
+        bottom: calc(var(--mobile-bottom-nav-clearance) + env(safe-area-inset-bottom, 0px));
         right: 20px;
         /* Move closer to edge */
         padding: 6px 12px;

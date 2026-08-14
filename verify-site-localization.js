@@ -28,6 +28,7 @@ assert(toggleSource.includes('aria-pressed'), 'Language controls must expose the
 assert(toggleSource.includes('localStorage.setItem("selectedLang", lang)'), 'Language selection is not persisted through selectedLang.');
 
 const indexHtml = read('index.html');
+const landingStyle = read('landing-style.css');
 const landingKeys = Array.from(indexHtml.matchAll(/data-i18n="([^"]+)"/g), match => match[1]);
 for (const language of languages) {
     const missing = landingKeys.filter(key => !translations[language][key]);
@@ -45,6 +46,12 @@ for (const key of coreBengaliKeys) {
 }
 assert((indexHtml.match(/class="book-link"/g) || []).length === 10, 'Landing library must expose all ten reader books.');
 assert(indexHtml.includes('src="lang-toggle.js?v=mbcl-20260814-3"'), 'Landing page does not load the versioned shared language control.');
+assert(indexHtml.includes('content="width=device-width, initial-scale=1.0, viewport-fit=cover"'), 'Landing viewport must expose mobile safe-area insets.');
+assert(indexHtml.includes('href="landing-style.css?v=1.0.7"'), 'Landing page does not load the footer-clearance stylesheet version.');
+assert(landingStyle.includes('--mobile-bottom-nav-clearance: 6rem;'), 'Mobile navigation clearance token is missing.');
+assert(landingStyle.includes('--mobile-footer-clearance: 9.5rem;'), 'Mobile footer clearance token is missing.');
+assert(landingStyle.includes('padding-bottom: calc(var(--mobile-footer-clearance) + env(safe-area-inset-bottom, 0px));'), 'Mobile footer does not reserve fixed-control clearance.');
+assert(landingStyle.includes('bottom: calc(var(--mobile-bottom-nav-clearance) + env(safe-area-inset-bottom, 0px));'), 'Mobile floating CTA does not clear the bottom navigation.');
 
 const readerPages = {
     'taurat-kejadian.html': 'kejadian',
