@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=reader-layout-20260815-1">
+    <link rel="stylesheet" href="style.css?v=reader-layout-20260815-2">
 </head>
 
 <body class="reader-page">
@@ -46,6 +46,8 @@
     <!-- Sticky Header -->
     <header class="header">
         <div class="header-content">
+            <div id="readerLanguageControl" class="reader-language-control" aria-label="Language selection"></div>
+
             <a href="index.html#library" class="back-btn" id="backBtn" aria-label="Kembali ke Perpustakaan">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -78,7 +80,6 @@
                 </div>
 
                 <div class="reader-header-controls">
-                    <div id="readerLanguageControl" class="reader-language-control" aria-label="Language selection"></div>
                     <div class="chapter-selector-wrapper">
                         <label for="chapterSelect" class="sr-only" data-reader-i18n="chooseChapter">Pilih Pasal</label>
                         <select id="chapterSelect" class="chapter-select">
@@ -204,9 +205,9 @@
     <script src="database/kitab_full_data.js"></script>
     <script src="database/mbcl/manifest.js?v=mbcl-20260814-3"></script>
     <script src="database/niv-nkrv/manifest.js?v=niv-nkrv-20260815-1"></script>
-    <script src="lang-toggle.js?v=reader-layout-20260815-1"></script>
+    <script src="lang-toggle.js?v=reader-layout-20260815-2"></script>
     <script>window.CURRENT_BOOK_ID = "ulangan";</script>
-    <script src="script.js?v=reader-layout-20260815-1"></script>
+    <script src="script.js?v=reader-layout-20260815-2"></script>
 </body>
 
 </html>

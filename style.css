@@ -31,7 +31,7 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     --header-height: 70px;
-    --reader-header-height: 106px;
+    --reader-header-height: 124px;
 }
 
 /* ====================================
@@ -232,16 +232,44 @@ body {
     /* Anchor for settings panel */
 }
 
-.reader-page .header,
+.reader-page .header {
+    min-height: var(--reader-header-height);
+}
+
 .reader-page .header-content {
     min-height: var(--reader-header-height);
+    height: auto;
+    grid-template-rows: auto auto;
+    align-content: center;
+    row-gap: 4px;
+}
+
+.reader-page .reader-language-control {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: center;
+}
+
+.reader-page .back-btn {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.reader-page .book-toggle-btn {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+}
+
+.reader-page .header-actions {
+    grid-column: 3;
+    grid-row: 2;
 }
 
 .reader-header-controls {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
+    align-items: center;
 }
 
 .reader-language-control {

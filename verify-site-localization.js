@@ -30,9 +30,13 @@ assert(toggleSource.includes('localStorage.setItem("selectedLang", lang)'), 'Lan
 assert(toggleSource.includes('readerLanguageControl'), 'Reader language control is not mounted in the header.');
 assert(toggleSource.includes('if (!isReaderHeaderControl)'), 'Reader language control must not receive the landing fixed-position styles.');
 assert(readerStyle.includes('.reader-language-control #lang-toggle-container'), 'Reader language control is missing reader-header styling.');
-assert(readerStyle.includes('--reader-header-height: 106px'), 'Reader header height token is missing.');
-assert(/\.reader-page \.header,\s*\.reader-page \.header-content\s*\{\s*min-height:\s*var\(--reader-header-height\);/.test(readerStyle),
-    'Reader header and header content must reserve the shared reader height.');
+assert(readerStyle.includes('--reader-header-height: 124px'), 'Reader header height token is missing.');
+assert(/\.reader-page \.header\s*\{\s*min-height:\s*var\(--reader-header-height\);/.test(readerStyle),
+    'Reader header must reserve the shared reader height.');
+assert(/\.reader-page \.header-content\s*\{[\s\S]*?min-height:\s*var\(--reader-header-height\);[\s\S]*?grid-template-rows:\s*auto auto;/.test(readerStyle),
+    'Reader header content must use the shared height and two-row layout.');
+assert(/\.reader-page \.reader-language-control\s*\{[\s\S]*?grid-column:\s*1 \/ -1;[\s\S]*?grid-row:\s*1;[\s\S]*?justify-self:\s*center;/.test(readerStyle),
+    'Reader language control must occupy the centered top row.');
 assert(readerStyle.includes('min-height: calc(100vh - var(--reader-header-height));'), 'Reader main content must use the shared reader header height.');
 const editionFooterRule = readerStyle.match(/\.reader-edition-footer\s*\{([\s\S]*?)\}/);
 assert(editionFooterRule && !/position\s*:\s*(?:fixed|sticky)/.test(editionFooterRule[1]), 'Reader edition footer must remain in normal document flow.');
@@ -93,10 +97,11 @@ for (const [page, bookId] of Object.entries(readerPages)) {
     assert(html.includes('class="reader-edition-footer"'), `${page} is missing the reader edition footer.`);
     assert(html.indexOf('id="editionNotice"') > html.indexOf('id="footnotes-section"'), `${page} places edition attribution before the reader footer.`);
     assert(html.includes('id="readerLanguageControl"'), `${page} is missing the header language-control mount.`);
+    assert(html.indexOf('id="readerLanguageControl"') < html.indexOf('id="backBtn"'), `${page} does not place language selection in the top header row.`);
     assert(html.indexOf('id="readerLanguageControl"') < html.indexOf('id="chapterSelect"'), `${page} does not place language selection above the chapter control.`);
-    assert(html.includes('style.css?v=reader-layout-20260815-1'), `${page} has an outdated reader layout stylesheet.`);
-    assert(html.includes('lang-toggle.js?v=reader-layout-20260815-1'), `${page} has an outdated reader language control.`);
-    assert(html.includes('script.js?v=reader-layout-20260815-1'), `${page} has an outdated reader script version.`);
+    assert(html.includes('style.css?v=reader-layout-20260815-2'), `${page} has an outdated reader layout stylesheet.`);
+    assert(html.includes('lang-toggle.js?v=reader-layout-20260815-2'), `${page} has an outdated reader language control.`);
+    assert(html.includes('script.js?v=reader-layout-20260815-2'), `${page} has an outdated reader script version.`);
 }
 
 const readerTemplate = read('reader.html');
@@ -105,9 +110,9 @@ assert(readerTemplate.includes('database/niv-nkrv/manifest.js'), 'Reader templat
 assert(readerTemplate.includes('lang-toggle.js'), 'Reader template is missing the shared language control.');
 assert(readerTemplate.includes('id="readerLanguageControl"'), 'Reader template is missing the header language-control mount.');
 assert(readerTemplate.indexOf('id="editionNotice"') > readerTemplate.indexOf('id="footnotes-section"'), 'Reader template places edition attribution before the reader footer.');
-assert(readerTemplate.includes('style.css?v=reader-layout-20260815-1'), 'Reader template has an outdated reader layout stylesheet.');
-assert(readerTemplate.includes('lang-toggle.js?v=reader-layout-20260815-1'), 'Reader template has an outdated reader language control.');
-assert(readerTemplate.includes('script.js?v=reader-layout-20260815-1'), 'Reader template has an outdated reader script version.');
+assert(readerTemplate.includes('style.css?v=reader-layout-20260815-2'), 'Reader template has an outdated reader layout stylesheet.');
+assert(readerTemplate.includes('lang-toggle.js?v=reader-layout-20260815-2'), 'Reader template has an outdated reader language control.');
+assert(readerTemplate.includes('script.js?v=reader-layout-20260815-2'), 'Reader template has an outdated reader script version.');
 
 const readerScript = read('script.js');
 for (const marker of [
