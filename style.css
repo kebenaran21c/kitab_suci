@@ -31,7 +31,7 @@
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
     --header-height: 70px;
-    --reader-header-height: 124px;
+    --reader-header-height: 96px;
 }
 
 /* ====================================
@@ -662,7 +662,9 @@ input[type=range]::-moz-range-thumb {
     transition: font-size 0.2s ease;
 }
 
-@media (max-width: 380px) {
+/* Keep every phone-width reader on the compact two-row grid so the 88px
+   header token, progress line, and reading area remain aligned. */
+@media (max-width: 480px) {
     .header-content {
         grid-template-columns: 36px minmax(0, 1fr) auto;
         gap: 4px;
@@ -1131,6 +1133,11 @@ input[type=range]::-moz-range-thumb {
    Responsive Utils
    ==================================== */
 @media (max-width: 480px) {
+    .reader-page {
+        /* Two compact header rows: 26px language control + 40px controls + spacing. */
+        --reader-header-height: 88px;
+    }
+
     .header-content {
         padding: 0.5rem var(--spacing-sm);
     }
