@@ -80,24 +80,48 @@ for (const [page, bookId] of Object.entries(readerPages)) {
     assert(html.includes('Noto+Sans+Bengali'), `${page} does not load the Bengali font.`);
     assert(html.includes('class="reader-page"'), `${page} is not marked as a reader page.`);
     assert(html.includes('id="editionNotice"'), `${page} is missing the public edition attribution surface.`);
+    assert(html.includes('script.js?v=niv-nkrv-20260815-1'), `${page} has an outdated reader script version.`);
 }
 
 const readerTemplate = read('reader.html');
 assert(readerTemplate.includes('database/mbcl/manifest.js'), 'Reader template is missing the MBCL manifest.');
+assert(readerTemplate.includes('database/niv-nkrv/manifest.js'), 'Reader template is missing the NIV/NKRV manifest.');
 assert(readerTemplate.includes('lang-toggle.js'), 'Reader template is missing the shared language control.');
+assert(readerTemplate.includes('script.js?v=niv-nkrv-20260815-1'), 'Reader template has an outdated reader script version.');
 
 const readerScript = read('script.js');
 for (const marker of [
     "const SUPPORTED_LANGUAGES = ['id', 'en', 'ko', 'bn']",
     "script.src = `database/mbcl/${currentBook}.js`",
     "currentLanguage === 'bn'",
+    "ensureEditionBookLoaded",
+    "const editionLoadPromises = { niv: null, nkrv: null }",
+    "database/niv-nkrv/${edition}/${currentBook}.js",
+    "Verse omitted in NIV.",
+    "verse-english",
+    "verse-korean",
     "url.searchParams.set('lang', currentLanguage)",
     "url.searchParams.set('chapter', currentChapter)",
     'data-verse-end',
-    "window.addEventListener('kitab:languagechange'"
+    "window.addEventListener('kitab:languagechange'",
+    'let lastSuccessfulLanguage = null;',
+    'markLanguageSuccessful();',
+    'const rollbackLanguage = lastSuccessfulLanguage || \'id\';',
+    'if (requestGeneration === languageRequestGeneration) rollbackLanguageChange();',
+    'if (requestGeneration !== languageRequestGeneration) return;',
+    'if (currentLanguage === rollbackLanguage) return;',
+    'window.setKitabLanguage(rollbackLanguage)'
 ]) {
     assert(readerScript.includes(marker), `Reader integration marker is missing: ${marker}`);
 }
+assert((readerScript.match(/markLanguageSuccessful\(\);/g) || []).length === 2,
+    'Last successful language must be recorded once after initialization and once after a successful language render.');
+assert(/restoreDeepLink\(\);\s*markLanguageSuccessful\(\);[\s\S]*window\.addEventListener\('kitab:languagechange'/.test(readerScript),
+    'Initial language success must be recorded only after reader rendering and deep-link restoration.');
+assert(/if \(requestGeneration !== languageRequestGeneration\) return;[\s\S]*restoreDeepLink\(\);\s*markLanguageSuccessful\(\);/.test(readerScript),
+    'Stale language requests must return before rendering or recording a successful language.');
+assert(!readerScript.includes('rollbackLanguageChange(previousLanguage)'),
+    'Language rollback must not use the immediately previous in-flight language.');
 
 const ledger = JSON.parse(read('BBS_MBCL_DEPLOY_TASKS.json'));
 assert(Array.isArray(ledger.tasks) && ledger.tasks.length === 12, 'Deployment ledger must contain G00-G11.');

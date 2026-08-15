@@ -120,12 +120,12 @@ def generate():
 
         # 4. Inject CURRENT_BOOK_ID before script.js
         # Match the versioned reader script and keep one explicit book ID per page.
-        script_injection = f'<script>window.CURRENT_BOOK_ID = "{book["id"]}";</script>\n    <script src="script.js?v=mbcl-20260814-3"></script>'
+        script_injection = f'<script>window.CURRENT_BOOK_ID = "{book["id"]}";</script>\n    <script src="script.js?v=niv-nkrv-20260815-1"></script>'
         content = re.sub(r'<script src="script\.js(?:\?[^\"]*)?"></script>', script_injection, content, count=1)
 
         # Write file
         out_path = os.path.join(OUTPUT_DIR, book['filename'])
-        with open(out_path, 'w', encoding='utf-8') as f_out:
+        with open(out_path, 'w', encoding='utf-8', newline='\n') as f_out:
             f_out.write(content)
         
         print(f"  -> Generated {book['filename']}")

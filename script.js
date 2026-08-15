@@ -64,6 +64,11 @@ let currentFontSize = localStorage.getItem('readerFontSize') || 17; // Default 1
 let currentLanguage = 'id';
 let currentRenderedVerses = [];
 let mbclLoadPromise = null;
+const editionLoadPromises = { niv: null, nkrv: null };
+let languageRequestGeneration = 0;
+// This is intentionally unset until a reader render has completed. Indonesian
+// remains the deterministic local fallback if the first remote edition fails.
+let lastSuccessfulLanguage = null;
 
 // DOM Elements
 const chapterSelect = document.getElementById('chapterSelect');
@@ -128,6 +133,10 @@ async function init() {
         const loaded = await ensureMbclBookLoaded();
         if (!loaded) return;
     }
+    if (currentLanguage === 'en' || currentLanguage === 'ko') {
+        const loaded = await ensureEditionBookLoaded(currentLanguage === 'en' ? 'niv' : 'nkrv');
+        if (!loaded) return;
+    }
 
     updateReaderChrome();
     populateChapterSelector();
@@ -135,6 +144,7 @@ async function init() {
     setupEventListeners();
     initBookNavigator();
     restoreDeepLink();
+    markLanguageSuccessful();
 }
 
 function copyFor(key) {
@@ -170,6 +180,11 @@ function updateReaderChrome() {
         const edition = window.KITAB_MBCL_MANIFEST.edition;
         editionNotice.hidden = false;
         editionNotice.innerHTML = `<strong>${edition.titleBn} (${edition.id})</strong><span>${edition.publisher}</span><span>${edition.copyright.singleColumn} · ${edition.copyright.doubleColumn}</span>`;
+    } else if (editionNotice && (currentLanguage === 'en' || currentLanguage === 'ko')) {
+        const edition = currentLanguage === 'en' ? window.KITAB_NIV_NKRV_MANIFEST?.editions?.NIV : window.KITAB_NIV_NKRV_MANIFEST?.editions?.NKRV;
+        if (!edition) { showError(copyFor('loadFailed')); return; }
+        editionNotice.hidden = false;
+        editionNotice.innerHTML = `<strong>${edition.title}</strong><span>${edition.copyright}</span>`;
     } else if (editionNotice) {
         editionNotice.hidden = true;
         editionNotice.innerHTML = '';
@@ -201,6 +216,22 @@ function ensureMbclBookLoaded() {
         document.head.appendChild(script);
     });
     return mbclLoadPromise;
+}
+
+function ensureEditionBookLoaded(edition) {
+    const key = edition === 'niv' ? 'KITAB_NIV_DATA' : 'KITAB_NKRV_DATA';
+    if (!window.KITAB_NIV_NKRV_MANIFEST) { showError(copyFor('loadFailed')); return Promise.resolve(false); }
+    if (window[key] && window[key][currentBook]) return Promise.resolve(true);
+    if (editionLoadPromises[edition]) return editionLoadPromises[edition];
+    showError(copyFor('loading'));
+    editionLoadPromises[edition] = new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = `database/niv-nkrv/${edition}/${currentBook}.js`;
+        script.onload = () => { editionLoadPromises[edition] = null; const ok = Boolean(window[key] && window[key][currentBook]); if (!ok) showError(copyFor('loadFailed')); resolve(ok); };
+        script.onerror = () => { editionLoadPromises[edition] = null; showError(copyFor('loadFailed')); resolve(false); };
+        document.head.appendChild(script);
+    });
+    return editionLoadPromises[edition];
 }
 
 /**
@@ -253,6 +284,15 @@ function loadChapter(chapterNum, { preserveHash = false } = {}) {
             id: range.bn,
             sh: range.heading || '',
             isMbcl: true
+        }));
+    }
+    if (currentLanguage === 'en' || currentLanguage === 'ko') {
+        const data = currentLanguage === 'en' ? window.KITAB_NIV_DATA : window.KITAB_NKRV_DATA;
+        const editionChapter = data && data[currentBook] && data[currentBook].chapters[chapterNum];
+        if (!editionChapter) { showError(copyFor('loadFailed')); return; }
+        sourceVerses = editionChapter.map(verse => ({
+            ...verse, id: verse.status === 'omitted' && currentLanguage === 'en' ? 'Verse omitted in NIV.' : verse.text, ar: canonicalVerses.filter(item => item.v >= verse.v && item.v <= (verse.ve || verse.v)).map(item => item.ar).join(' '),
+            sh: '', editionStatus: verse.status
         }));
     }
 
@@ -498,8 +538,8 @@ function createVerseCard(verse, chapterNum) {
 
     const subheadingHtml = verse.sh ? `<div class="verse-subheading" lang="${currentLanguage}">${verse.sh}</div>` : '';
     const verseLabel = verse.vl || (verse.ve && verse.ve !== verse.v ? `${verse.v}-${verse.ve}` : String(verse.v));
-    const translationClass = currentLanguage === 'bn' ? 'verse-bengali' : 'verse-indonesian';
-    const translationLang = currentLanguage === 'bn' ? 'bn' : 'id';
+    const translationClass = ({ bn: 'verse-bengali', en: 'verse-english', ko: 'verse-korean', id: 'verse-indonesian' })[currentLanguage] || 'verse-indonesian';
+    const translationLang = ({ bn: 'bn', en: 'en', ko: 'ko', id: 'id' })[currentLanguage] || 'id';
 
     return `
         <div class="verse-card" id="v${verse.v}" data-chapter="${chapterNum}" data-verse="${verse.v}" data-verse-end="${verse.ve || verse.v}">
@@ -894,19 +934,39 @@ function updateFontSize(size) {
 window.addEventListener('kitab:languagechange', async event => {
     const nextLanguage = event.detail && event.detail.lang;
     if (!SUPPORTED_LANGUAGES.includes(nextLanguage) || !window.CURRENT_BOOK_DATA) return;
-
+    const requestGeneration = ++languageRequestGeneration;
     currentLanguage = nextLanguage;
     if (currentLanguage === 'bn') {
         const loaded = await ensureMbclBookLoaded();
-        if (!loaded) return;
+        if (!loaded) { if (requestGeneration === languageRequestGeneration) rollbackLanguageChange(); return; }
     }
+    if (currentLanguage === 'en' || currentLanguage === 'ko') {
+        const loaded = await ensureEditionBookLoaded(currentLanguage === 'en' ? 'niv' : 'nkrv');
+        if (!loaded) { if (requestGeneration === languageRequestGeneration) rollbackLanguageChange(); return; }
+    }
+    if (requestGeneration !== languageRequestGeneration) return;
 
     updateReaderChrome();
     populateChapterSelector();
     loadChapter(currentChapter, { preserveHash: true });
     initBookNavigator();
     restoreDeepLink();
+    markLanguageSuccessful();
 });
+
+function markLanguageSuccessful() {
+    lastSuccessfulLanguage = currentLanguage;
+}
+
+function rollbackLanguageChange() {
+    const rollbackLanguage = lastSuccessfulLanguage || 'id';
+    // A fallback request can itself fail only if its previously rendered corpus
+    // disappeared. Do not dispatch a duplicate event and create a rollback loop.
+    if (currentLanguage === rollbackLanguage) return;
+    currentLanguage = rollbackLanguage;
+    if (typeof window.setKitabLanguage === 'function') window.setKitabLanguage(rollbackLanguage);
+    else { localStorage.setItem('selectedLang', rollbackLanguage); updateReaderChrome(); }
+}
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
