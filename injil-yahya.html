@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=mbcl-20260814-3">
+    <link rel="stylesheet" href="style.css?v=reader-layout-20260815-1">
 </head>
 
 <body class="reader-page">
@@ -77,11 +77,14 @@
                     </div>
                 </div>
 
-                <div class="chapter-selector-wrapper">
-                    <label for="chapterSelect" class="sr-only" data-reader-i18n="chooseChapter">Pilih Pasal</label>
-                    <select id="chapterSelect" class="chapter-select">
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
+                <div class="reader-header-controls">
+                    <div id="readerLanguageControl" class="reader-language-control" aria-label="Language selection"></div>
+                    <div class="chapter-selector-wrapper">
+                        <label for="chapterSelect" class="sr-only" data-reader-i18n="chooseChapter">Pilih Pasal</label>
+                        <select id="chapterSelect" class="chapter-select">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,7 +92,6 @@
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
-        <aside id="editionNotice" class="edition-notice" role="note" hidden></aside>
         <div id="versesContainer" class="verses-container">
             <!-- Verses will be dynamically loaded here -->
         </div>
@@ -123,6 +125,10 @@
                 <!-- Footnotes will be populated here -->
             </div>
         </section>
+
+        <footer class="reader-edition-footer" aria-label="Edition and source attribution">
+            <aside id="editionNotice" class="edition-notice" role="note" hidden></aside>
+        </footer>
     </main>
 
     <!-- Action Modal (Bottom Sheet) -->
@@ -198,9 +204,9 @@
     <script src="database/kitab_full_data.js"></script>
     <script src="database/mbcl/manifest.js?v=mbcl-20260814-3"></script>
     <script src="database/niv-nkrv/manifest.js?v=niv-nkrv-20260815-1"></script>
-    <script src="lang-toggle.js?v=mbcl-20260814-3"></script>
+    <script src="lang-toggle.js?v=reader-layout-20260815-1"></script>
     <script>window.CURRENT_BOOK_ID = "yahya";</script>
-    <script src="script.js?v=niv-nkrv-20260815-1"></script>
+    <script src="script.js?v=reader-layout-20260815-1"></script>
 </body>
 
 </html>

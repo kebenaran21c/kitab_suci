@@ -777,6 +777,8 @@ translations.bn = {
 
 document.addEventListener("DOMContentLoaded", function () {
     const langToggleContainer = document.createElement("div");
+    const readerLanguageControl = document.getElementById("readerLanguageControl");
+    const isReaderHeaderControl = Boolean(readerLanguageControl);
     langToggleContainer.id = "lang-toggle-container";
     langToggleContainer.innerHTML = `
         <button class="lang-btn" data-lang="id">ID</button>
@@ -784,25 +786,27 @@ document.addEventListener("DOMContentLoaded", function () {
         <button class="lang-btn" data-lang="ko">KR</button>
         <button class="lang-btn" data-lang="bn">বাংলা</button>
     `;
-    document.body.appendChild(langToggleContainer);
+    (readerLanguageControl || document.body).appendChild(langToggleContainer);
     langToggleContainer.setAttribute("role", "group");
     langToggleContainer.setAttribute("aria-label", "Language / 언어 / ভাষা");
 
-    // Style the container dynamically if not in CSS
-    Object.assign(langToggleContainer.style, {
-        position: "fixed",
-        top: document.body.classList.contains("reader-page") ? "auto" : "20px",
-        bottom: document.body.classList.contains("reader-page") ? "20px" : "auto",
-        right: "20px",
-        zIndex: "1000",
-        background: "rgba(238, 242, 238, 0.9)", // Light gray/greenish tint match
-        padding: "4px",
-        borderRadius: "50px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-        display: "flex",
-        gap: "0px",
-        backdropFilter: "blur(5px)"
-    });
+    // Landing pages retain the existing floating control. Reader pages mount the
+    // same accessible control in the header so it never overlays verse content.
+    if (!isReaderHeaderControl) {
+        Object.assign(langToggleContainer.style, {
+            position: "fixed",
+            top: "20px",
+            right: "20px",
+            zIndex: "1000",
+            background: "rgba(238, 242, 238, 0.9)",
+            padding: "4px",
+            borderRadius: "50px",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+            display: "flex",
+            gap: "0px",
+            backdropFilter: "blur(5px)"
+        });
+    }
 
     const buttons = langToggleContainer.querySelectorAll(".lang-btn");
     buttons.forEach(btn => {

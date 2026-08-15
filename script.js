@@ -176,16 +176,20 @@ function updateReaderChrome() {
     });
 
     const editionNotice = document.getElementById('editionNotice');
+    const editionFooter = editionNotice?.closest('.reader-edition-footer');
     if (editionNotice && currentLanguage === 'bn') {
         const edition = window.KITAB_MBCL_MANIFEST.edition;
+        if (editionFooter) editionFooter.hidden = false;
         editionNotice.hidden = false;
         editionNotice.innerHTML = `<strong>${edition.titleBn} (${edition.id})</strong><span>${edition.publisher}</span><span>${edition.copyright.singleColumn} · ${edition.copyright.doubleColumn}</span>`;
     } else if (editionNotice && (currentLanguage === 'en' || currentLanguage === 'ko')) {
         const edition = currentLanguage === 'en' ? window.KITAB_NIV_NKRV_MANIFEST?.editions?.NIV : window.KITAB_NIV_NKRV_MANIFEST?.editions?.NKRV;
         if (!edition) { showError(copyFor('loadFailed')); return; }
+        if (editionFooter) editionFooter.hidden = false;
         editionNotice.hidden = false;
         editionNotice.innerHTML = `<strong>${edition.title}</strong><span>${edition.copyright}</span>`;
     } else if (editionNotice) {
+        if (editionFooter) editionFooter.hidden = true;
         editionNotice.hidden = true;
         editionNotice.innerHTML = '';
     }
